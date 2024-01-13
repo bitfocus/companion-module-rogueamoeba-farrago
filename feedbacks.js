@@ -75,5 +75,23 @@ export function getFeedbacks() {
 		},
 	}
 
+	feedbacks['playing'] = {
+		type: 'boolean',
+		name: 'Playing',
+		description: 'Change style if any tile is playing',
+		defaultStyle: {
+			bgcolor: ColorGreen,
+		},
+		options: [],
+		callback: (feedback) => {
+			let index = this.tiles.find(({ play }) => play === true)
+			if (index) {
+				return true
+			} else {
+				return false
+			}
+		},
+	}
+
 	return feedbacks
 }

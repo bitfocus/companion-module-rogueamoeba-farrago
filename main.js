@@ -149,6 +149,7 @@ class FarragoInstance extends InstanceBase {
 								if (this.tiles[index].play !== value) {
 									this.tiles[index].play = value
 									this.checkFeedbacks('tilePlaying')
+									this.checkFeedbacks('playing')
 								}
 								break
 							case 'color':
