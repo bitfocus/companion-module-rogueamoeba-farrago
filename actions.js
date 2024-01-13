@@ -114,6 +114,14 @@ export function getActions() {
 				this.sendCommand(`/master/toggleAB`, 1)
 			},
 		},
+		playSelected: {
+			name: 'Play Selected',
+			options: [],
+			callback: () => {
+				let selected = this.status.selected
+				this.sendCommand(`/set/selected/tile/${selected}/play`, 1)
+			},
+		},
 		//Global Actions
 		bringForward: {
 			name: 'Bring App Forward',
