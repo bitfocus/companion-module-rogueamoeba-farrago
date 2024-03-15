@@ -1,6 +1,7 @@
 export function getActions() {
 	let tileChoices = this.tiles.filter(({ label }) => label)
 	let tileDefault = tileChoices?.[0] ? this.tiles[0].id : ''
+	let setChoices = this.sets.filter(({ label }) => label)
 
 	let actions = {
 		//Tile Actions
@@ -120,6 +121,22 @@ export function getActions() {
 			callback: () => {
 				let selected = this.status.selected
 				this.sendCommand(`/set/selected/tile/${selected}/play`, 1)
+			},
+		},
+		setPosition: {
+			name: 'Select Set',
+			options: [
+				{
+					id: 'set',
+					type: 'dropdown',
+					label: 'Set',
+					choices: setChoices,
+					default: 0,
+				},
+			],
+			callback: (action) => {
+				let set = action.options.set
+				this.sendCommand(`/set/${set}/`, 1)
 			},
 		},
 		//Global Actions

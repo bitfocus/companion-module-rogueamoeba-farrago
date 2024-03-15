@@ -100,6 +100,7 @@ class FarragoInstance extends InstanceBase {
 
 	initOSC() {
 		this.tiles = []
+		this.sets = []
 		this.status = {}
 		if (this.listener) {
 			this.listener.close()
@@ -180,6 +181,20 @@ class FarragoInstance extends InstanceBase {
 					let tile = info[2]
 
 					this.status.selected = tile
+				} else if (address.match(/\/set\/\d+\/title+$/) && value) {
+					let info = message.address.match(/\/set\/(\d+)\/title+$/)
+					let setPosition = parseInt(info[1])
+					let index = this.sets.findIndex((set) => set.id === setPosition)
+
+					if (index > -1) {
+						this.sets[index].label = value
+					} else {
+						this.sets.push({
+							id: setPosition,
+							label: value,
+						})
+						this.updateCompanionInternals()
+					}
 				}
 			}
 		})
@@ -190,8 +205,10 @@ class FarragoInstance extends InstanceBase {
 		this.tiles.sort((a, b) =>
 			a.id.localeCompare(b.id, undefined, {
 				numeric: true,
-			})
+			}),
 		)
+
+		this.sets.sort((a, b) => a.id - b.id) 
 
 		this.initActions()
 		this.initPresets()
