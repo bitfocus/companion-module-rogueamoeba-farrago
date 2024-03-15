@@ -205,10 +205,10 @@ class FarragoInstance extends InstanceBase {
 		this.tiles.sort((a, b) =>
 			a.id.localeCompare(b.id, undefined, {
 				numeric: true,
-			}),
+			})
 		)
 
-		this.sets.sort((a, b) => a.id - b.id) 
+		this.sets.sort((a, b) => a.id - b.id)
 
 		this.initActions()
 		this.initPresets()
