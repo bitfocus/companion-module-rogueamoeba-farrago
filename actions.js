@@ -139,6 +139,13 @@ export function getActions() {
 				this.sendCommand(`/set/${set}/`, 1)
 			},
 		},
+		listReset: {
+			name: 'Reset List',
+			options: [],
+			callback: (action) => {
+				this.sendCommand(`/list/reset`, 1)
+			},
+		},
 		//Global Actions
 		bringForward: {
 			name: 'Bring App Forward',
