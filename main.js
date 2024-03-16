@@ -129,7 +129,7 @@ class FarragoInstance extends InstanceBase {
 			if (message) {
 				let value = message.args[0]?.value
 				let address = message.address
-
+				//console.log(message)
 				if (address.match(/\/set\/\d+\/tile\/\d+\/\d+\/[A-Za-z]+$/)) {
 					let info = message.address.match(/(\/set\/\d+\/tile\/\d+\/\d+)\/([A-Za-z]+)$/)
 					let id = info[1]
@@ -194,6 +194,14 @@ class FarragoInstance extends InstanceBase {
 							label: value,
 						})
 						this.updateCompanionInternals()
+					}
+				} else if (address.match(/\/set\/\d+\/select+$/)) {
+					if (value) {
+						let info = message.address.match(/\/set\/(\d+)\/select+$/)
+						let setPosition = parseInt(info[1])
+						this.status.selectedSet = setPosition
+
+						this.checkFeedbacks('setSelected')
 					}
 				}
 			}

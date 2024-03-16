@@ -11,6 +11,7 @@ export function getFeedbacks() {
 
 	let tileChoices = this.tiles.filter(({ label }) => label)
 	let tileDefault = tileChoices?.[0] ? this.tiles[0].id : ''
+	let setChoices = this.sets.filter(({ label }) => label)
 
 	const FarragoColors = {
 		0: combineRgb(169, 78, 255),
@@ -90,6 +91,27 @@ export function getFeedbacks() {
 			} else {
 				return false
 			}
+		},
+	}
+
+	feedbacks['setSelected'] = {
+		type: 'boolean',
+		name: 'Set Selected',
+		description: 'Change style if a set is selected',
+		defaultStyle: {
+			bgcolor: ColorGreen,
+		},
+		options: [
+			{
+				id: 'set',
+				type: 'dropdown',
+				label: 'Set',
+				default: 0,
+				choices: setChoices,
+			},
+		],
+		callback: (feedback) => {
+			return feedback.options.set === this.status.selectedSet
 		},
 	}
 

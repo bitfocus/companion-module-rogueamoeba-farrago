@@ -102,7 +102,7 @@ export function getPresets() {
 		},
 	}
 
-	//Tile Variables
+	//Tile Presets
 	this.tiles.forEach((tile) => {
 		if (tile.label) {
 			let id = tile.id
@@ -146,6 +146,51 @@ export function getPresets() {
 						},
 						style: {
 							bgcolor: ColorRed,
+						},
+					},
+				],
+			}
+		}
+	})
+
+	//Set Presets
+	this.sets.forEach((set) => {
+		if (set.label) {
+			let id = set.id
+			let variableName = `set_${set.id}`
+
+			presets[`${variableName}`] = {
+				type: 'button',
+				category: 'Set Buttons',
+				name: `${variableName}`,
+				options: {},
+				style: {
+					text: `$(farrago:${variableName}_name)`,
+					size: '14',
+					color: ColorWhite,
+					bgcolor: ColorBlack,
+				},
+				steps: [
+					{
+						down: [
+							{
+								actionId: 'setPosition',
+								options: {
+									set: id,
+								},
+							},
+						],
+						up: [],
+					},
+				],
+				feedbacks: [
+					{
+						feedbackId: 'setSelected',
+						options: {
+							set: id,
+						},
+						style: {
+							bgcolor: ColorGreen,
 						},
 					},
 				],

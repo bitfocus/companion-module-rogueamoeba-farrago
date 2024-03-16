@@ -17,5 +17,17 @@ export function getVariables() {
 		}
 	})
 
+	//Set Variables
+	this.sets.forEach((set) => {
+		if (set.label) {
+			let variableName = `set_${set.id}`
+			variables.push({
+				name: `Set ${set.id} - Name`,
+				variableId: `${variableName}_name`,
+			})
+			this.setVariableValues({ [`${variableName}_name`]: set.label })
+		}
+	})
+
 	return variables
 }
