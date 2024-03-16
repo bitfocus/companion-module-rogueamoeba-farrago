@@ -13,7 +13,20 @@ export function getVariables() {
 				name: `Tile ${variableName} - Icon`,
 				variableId: `${variableName}_icon`,
 			})
-			this.setVariableValues({ [`${variableName}_name`]: tile.label, [`${variableName}_icon`]: tile.icon })
+			variables.push({
+				name: `Tile ${variableName} - Duration`,
+				variableId: `${variableName}_duration`,
+			})
+			variables.push({
+				name: `Tile ${variableName} - Remaining Time`,
+				variableId: `${variableName}_remainingTime`,
+			})
+			this.setVariableValues({
+				[`${variableName}_`]: tile.label,
+				[`${variableName}_icon`]: tile.icon,
+				[`${variableName}_duration`]: this.secondsToMS(tile.duration),
+				[`${variableName}_remainingTime`]: this.secondsToMS(tile.remainingTime),
+			})
 		}
 	})
 

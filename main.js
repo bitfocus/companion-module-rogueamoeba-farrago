@@ -165,6 +165,18 @@ class FarragoInstance extends InstanceBase {
 									this.setVariableValues({ [`${variableName}_icon`]: value })
 								}
 								break
+							case 'duration':
+								if (this.tiles[index].duration !== value) {
+									this.tiles[index].duration = value
+									this.setVariableValues({ [`${variableName}_duration`]: this.secondsToMS(value) })
+								}
+								break
+							case 'remainingTime':
+								if (this.tiles[index].remainingTime !== value) {
+									this.tiles[index].remainingTime = value
+									this.setVariableValues({ [`${variableName}_remainingTime`]: this.secondsToMS(value) })
+								}
+								break
 							default:
 							/* if (this.tiles[index][`${prop}`] !== value) {
 									this.tiles[index][`${prop}`] = value
@@ -222,6 +234,13 @@ class FarragoInstance extends InstanceBase {
 		this.initPresets()
 		this.initFeedbacks()
 		this.initVariables()
+	}
+
+	secondsToMS(s) {
+		let time = Math.round(s)
+		const minutes = `${Math.floor(time / 60)}`.padStart(2, '0')
+		const seconds = `${time - minutes * 60}`.padStart(2, '0')
+		return `${minutes}:${seconds}`
 	}
 }
 
