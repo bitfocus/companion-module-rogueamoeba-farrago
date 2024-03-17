@@ -1,6 +1,7 @@
 export function getActions() {
 	let tileChoices = this.tiles.filter(({ label }) => label)
 	let tileDefault = tileChoices?.[0] ? this.tiles[0].id : ''
+	let setChoices = this.sets.filter(({ label }) => label)
 
 	let actions = {
 		//Tile Actions
@@ -100,6 +101,21 @@ export function getActions() {
 				this.sendCommand(`/master/mute`, 1)
 			},
 		},
+		unmute: {
+			name: 'Master Unmute',
+			options: [],
+			callback: () => {
+				this.sendCommand(`/master/mute`, 0)
+			},
+		},
+		toggleMute: {
+			name: 'Master Mute Toggle',
+			options: [],
+			callback: () => {
+				let value = this.status.mute ? 0 : 1
+				this.sendCommand(`/master/mute`, value)
+			},
+		},
 		fadeAll: {
 			name: 'Fade All',
 			options: [],
@@ -111,7 +127,8 @@ export function getActions() {
 			name: 'Toggle A/B',
 			options: [],
 			callback: () => {
-				this.sendCommand(`/master/toggleAB`, 1)
+				let value = this.status.toggleAB === 1 ? 0 : 1
+				this.sendCommand(`/master/toggleAB`, value)
 			},
 		},
 		playSelected: {
@@ -120,6 +137,29 @@ export function getActions() {
 			callback: () => {
 				let selected = this.status.selected
 				this.sendCommand(`/set/selected/tile/${selected}/play`, 1)
+			},
+		},
+		setPosition: {
+			name: 'Select Set',
+			options: [
+				{
+					id: 'set',
+					type: 'dropdown',
+					label: 'Set',
+					choices: setChoices,
+					default: 0,
+				},
+			],
+			callback: (action) => {
+				let set = action.options.set
+				this.sendCommand(`/set/${set}/`, 1)
+			},
+		},
+		listReset: {
+			name: 'Reset List',
+			options: [],
+			callback: () => {
+				this.sendCommand(`/list/reset`, 1)
 			},
 		},
 		//Global Actions

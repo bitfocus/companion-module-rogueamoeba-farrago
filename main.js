@@ -100,6 +100,7 @@ class FarragoInstance extends InstanceBase {
 
 	initOSC() {
 		this.tiles = []
+		this.sets = []
 		this.status = {}
 		if (this.listener) {
 			this.listener.close()
@@ -128,7 +129,7 @@ class FarragoInstance extends InstanceBase {
 			if (message) {
 				let value = message.args[0]?.value
 				let address = message.address
-
+				//console.log(message)
 				if (address.match(/\/set\/\d+\/tile\/\d+\/\d+\/[A-Za-z]+$/)) {
 					let info = message.address.match(/(\/set\/\d+\/tile\/\d+\/\d+)\/([A-Za-z]+)$/)
 					let id = info[1]
@@ -164,6 +165,19 @@ class FarragoInstance extends InstanceBase {
 									this.setVariableValues({ [`${variableName}_icon`]: value })
 								}
 								break
+							case 'duration':
+								if (this.tiles[index].duration !== value) {
+									this.tiles[index].duration = value
+									this.setVariableValues({ [`${variableName}_duration`]: this.secondsToMS(value) })
+								}
+								break
+							case 'remainingTime':
+								let seconds = Math.round(value)
+								if (this.tiles[index].remainingTime !== seconds) {
+									this.tiles[index].remainingTime = seconds
+									this.setVariableValues({ [`${variableName}_remainingTime`]: this.secondsToMS(seconds) })
+								}
+								break
 							default:
 							/* if (this.tiles[index][`${prop}`] !== value) {
 									this.tiles[index][`${prop}`] = value
@@ -180,6 +194,49 @@ class FarragoInstance extends InstanceBase {
 					let tile = info[2]
 
 					this.status.selected = tile
+				} else if (address.match(/\/set\/\d+\/title+$/) && value) {
+					let info = message.address.match(/\/set\/(\d+)\/title+$/)
+					let setPosition = parseInt(info[1])
+					let index = this.sets.findIndex((set) => set.id === setPosition)
+
+					if (index > -1) {
+						this.sets[index].label = value
+					} else {
+						this.sets.push({
+							id: setPosition,
+							label: value,
+						})
+						this.updateCompanionInternals()
+					}
+				} else if (address.match(/\/set\/\d+\/select+$/)) {
+					if (value) {
+						let info = message.address.match(/\/set\/(\d+)\/select+$/)
+						let setPosition = parseInt(info[1])
+						this.status.selectedSet = setPosition
+
+						this.checkFeedbacks('setSelected')
+					}
+				} else if (address.match(/\/master\//)) {
+					let prop = message.address.replaceAll('/master/', '')
+
+					switch (prop) {
+						case 'mute':
+							this.status.mute = value === 1 ? true : false
+							this.checkFeedbacks('mute')
+							this.setVariableValues({ mute: this.status.mute ? 'Muted' : 'Unmuted' })
+							break
+						case 'toggleAB':
+							this.status.toggleAB = value
+							this.checkFeedbacks('volumeAB')
+							break
+						case 'volume':
+							let vol = Math.round(value * 100)
+							this.status.volume = vol
+							this.setVariableValues({ volume: `${vol}%` })
+							break
+						default:
+						//console.log(message)
+					}
 				}
 			}
 		})
@@ -193,10 +250,19 @@ class FarragoInstance extends InstanceBase {
 			})
 		)
 
+		this.sets.sort((a, b) => a.id - b.id)
+
 		this.initActions()
 		this.initPresets()
 		this.initFeedbacks()
 		this.initVariables()
+	}
+
+	secondsToMS(s) {
+		let time = Math.round(s)
+		const minutes = `${Math.floor(time / 60)}`.padStart(2, '0')
+		const seconds = `${time - minutes * 60}`.padStart(2, '0')
+		return `${minutes}:${seconds}`
 	}
 }
 

@@ -11,6 +11,7 @@ export function getFeedbacks() {
 
 	let tileChoices = this.tiles.filter(({ label }) => label)
 	let tileDefault = tileChoices?.[0] ? this.tiles[0].id : ''
+	let setChoices = this.sets.filter(({ label }) => label)
 
 	const FarragoColors = {
 		0: combineRgb(169, 78, 255),
@@ -83,13 +84,71 @@ export function getFeedbacks() {
 			bgcolor: ColorGreen,
 		},
 		options: [],
-		callback: (feedback) => {
+		callback: () => {
 			let index = this.tiles.find(({ play }) => play === true)
 			if (index) {
 				return true
 			} else {
 				return false
 			}
+		},
+	}
+
+	feedbacks['setSelected'] = {
+		type: 'boolean',
+		name: 'Set Selected',
+		description: 'Change style if a set is selected',
+		defaultStyle: {
+			bgcolor: ColorGreen,
+		},
+		options: [
+			{
+				id: 'set',
+				type: 'dropdown',
+				label: 'Set',
+				default: 0,
+				choices: setChoices,
+			},
+		],
+		callback: (feedback) => {
+			return feedback.options.set === this.status.selectedSet
+		},
+	}
+
+	feedbacks['mute'] = {
+		type: 'boolean',
+		name: 'Master Mute',
+		description: 'Change style if the master volume is muted',
+		defaultStyle: {
+			bgcolor: ColorRed,
+		},
+		options: [],
+		callback: () => {
+			return this.status.mute
+		},
+	}
+
+	feedbacks['volumeAB'] = {
+		type: 'boolean',
+		name: 'Volume A/B Status',
+		description: 'Change style if the master volume is set to A or B',
+		defaultStyle: {
+			bgcolor: ColorGreen,
+		},
+		options: [
+			{
+				id: 'char',
+				type: 'dropdown',
+				label: 'A / B',
+				default: 0,
+				choices: [
+					{ id: 0, label: 'A' },
+					{ id: 1, label: 'B' },
+				],
+			},
+		],
+		callback: (feedback) => {
+			return feedback.options.char === this.status.toggleAB
 		},
 	}
 
