@@ -418,10 +418,18 @@ export function getPresets() {
 		if (tile.label) {
 			let id = tile.id
 			let variableName = tile.id.replaceAll('/', '_').slice(1)
+			let setId = tile?.id?.split('/')[2]
+
+			let setName = this.sets.find((set) => set.id == setId)
+			if (setName) {
+				setName = setName.label
+			} else {
+				setName = 'Unknown Set'
+			}
 
 			presets[`${id}`] = {
 				type: 'button',
-				category: 'Tile Buttons',
+				category: `Tiles - ${setName}`,
 				name: `${id}`,
 				options: {},
 				style: {
