@@ -101,6 +101,21 @@ export function getActions() {
 				this.sendCommand(`/master/mute`, 1)
 			},
 		},
+		unmute: {
+			name: 'Master Unmute',
+			options: [],
+			callback: () => {
+				this.sendCommand(`/master/mute`, 0)
+			},
+		},
+		toggleMute: {
+			name: 'Master Mute Toggle',
+			options: [],
+			callback: () => {
+				let value = this.status.mute ? 0 : 1
+				this.sendCommand(`/master/mute`, value)
+			},
+		},
 		fadeAll: {
 			name: 'Fade All',
 			options: [],
@@ -112,7 +127,8 @@ export function getActions() {
 			name: 'Toggle A/B',
 			options: [],
 			callback: () => {
-				this.sendCommand(`/master/toggleAB`, 1)
+				let value = this.status.toggleAB === 1 ? 0 : 1
+				this.sendCommand(`/master/toggleAB`, value)
 			},
 		},
 		playSelected: {
@@ -142,7 +158,7 @@ export function getActions() {
 		listReset: {
 			name: 'Reset List',
 			options: [],
-			callback: (action) => {
+			callback: () => {
 				this.sendCommand(`/list/reset`, 1)
 			},
 		},

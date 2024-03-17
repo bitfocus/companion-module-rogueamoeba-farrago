@@ -8,6 +8,7 @@ export function getPresets() {
 	const ColorOrange = combineRgb(255, 102, 0)
 
 	let presets = {
+		//Transport Controls
 		previous: {
 			type: 'button',
 			category: 'Transport Controls',
@@ -154,9 +155,223 @@ export function getPresets() {
 			],
 			feedbacks: [],
 		},
+		//Master Controls
+		volumeDown: {
+			type: 'button',
+			category: 'Master Controls',
+			name: 'Volume Down',
+			options: {},
+			style: {
+				text: '🔽\\nVolume',
+				size: 'auto',
+				color: ColorWhite,
+				bgcolor: ColorBlack,
+			},
+			steps: [
+				{
+					down: [
+						{
+							actionId: 'volumeDown',
+						},
+					],
+					up: [],
+				},
+			],
+			feedbacks: [],
+		},
+		volumeUp: {
+			type: 'button',
+			category: 'Master Controls',
+			name: 'Volume Up',
+			options: {},
+			style: {
+				text: '🔼\\nVolume',
+				size: 'auto',
+				color: ColorWhite,
+				bgcolor: ColorBlack,
+			},
+			steps: [
+				{
+					down: [
+						{
+							actionId: 'volumeUp',
+						},
+					],
+					up: [],
+				},
+			],
+			feedbacks: [],
+		},
+		toggleAB: {
+			type: 'button',
+			category: 'Master Controls',
+			name: 'Toggle A/B',
+			options: {},
+			style: {
+				text: '🅰️🅱️\\nToggle A/B',
+				size: 'auto',
+				color: ColorWhite,
+				bgcolor: ColorBlack,
+			},
+			steps: [
+				{
+					down: [
+						{
+							actionId: 'toggleAB',
+						},
+					],
+					up: [],
+				},
+			],
+			feedbacks: [],
+		},
+		toggleABFeedback: {
+			type: 'button',
+			category: 'Master Controls',
+			name: 'Toggle A/B Feedback',
+			options: {},
+			style: {
+				text: '🅰️\\nSet to A',
+				size: 'auto',
+				color: ColorWhite,
+				bgcolor: ColorBlack,
+			},
+			steps: [
+				{
+					down: [
+						{
+							actionId: 'toggleAB',
+						},
+					],
+					up: [],
+				},
+			],
+			feedbacks: [
+				{
+					feedbackId: 'volumeAB',
+					options: {
+						char: 0,
+					},
+					style: {
+						text: '🅱️\\nSet to B',
+					},
+				},
+				{
+					feedbackId: 'volumeAB',
+					options: { char: 1 },
+					style: {
+						text: '🅰️\\nSet to A',
+					},
+				},
+			],
+		},
+		mute: {
+			type: 'button',
+			category: 'Master Controls',
+			name: 'Mute',
+			options: {},
+			style: {
+				text: '🔇\\nMute',
+				size: 'auto',
+				color: ColorWhite,
+				bgcolor: ColorBlack,
+			},
+			steps: [
+				{
+					down: [
+						{
+							actionId: 'mute',
+						},
+					],
+					up: [],
+				},
+			],
+			feedbacks: [
+				{
+					feedbackId: 'mute',
+					options: {},
+					style: {
+						bgcolor: ColorRed,
+					},
+				},
+			],
+		},
+		unmute: {
+			type: 'button',
+			category: 'Master Controls',
+			name: 'Unmute',
+			options: {},
+			style: {
+				text: '🔈\\nUnmute',
+				size: 'auto',
+				color: ColorWhite,
+				bgcolor: ColorBlack,
+			},
+			steps: [
+				{
+					down: [
+						{
+							actionId: 'unmute',
+						},
+					],
+					up: [],
+				},
+			],
+			feedbacks: [
+				{
+					feedbackId: 'mute',
+					options: {},
+					style: {
+						bgcolor: ColorGreen,
+					},
+					isInverted: true,
+				},
+			],
+		},
+		toggleMute: {
+			type: 'button',
+			category: 'Master Controls',
+			name: 'Toggle Mute',
+			options: {},
+			style: {
+				text: 'Toggle Mute',
+				size: 'auto',
+				color: ColorWhite,
+				bgcolor: ColorBlack,
+			},
+			steps: [
+				{
+					down: [
+						{
+							actionId: 'toggleMute',
+						},
+					],
+					up: [],
+				},
+			],
+			feedbacks: [
+				{
+					feedbackId: 'mute',
+					options: {},
+					style: {
+						bgcolor: ColorRed,
+						text: '🔇\\nMuted',
+					},
+				},
+				{
+					feedbackId: 'mute',
+					options: {},
+					style: {
+						bgcolor: ColorGreen,
+						text: '🔈\\nUnmuted',
+					},
+					isInverted: true,
+				},
+			],
+		},
 		bringForward: {
 			type: 'button',
-			category: 'Transport Controls',
+			category: 'Master Controls',
 			name: 'Bring App Forward',
 			options: {},
 			style: {

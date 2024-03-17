@@ -84,7 +84,7 @@ export function getFeedbacks() {
 			bgcolor: ColorGreen,
 		},
 		options: [],
-		callback: (feedback) => {
+		callback: () => {
 			let index = this.tiles.find(({ play }) => play === true)
 			if (index) {
 				return true
@@ -112,6 +112,43 @@ export function getFeedbacks() {
 		],
 		callback: (feedback) => {
 			return feedback.options.set === this.status.selectedSet
+		},
+	}
+
+	feedbacks['mute'] = {
+		type: 'boolean',
+		name: 'Master Mute',
+		description: 'Change style if the master volume is muted',
+		defaultStyle: {
+			bgcolor: ColorRed,
+		},
+		options: [],
+		callback: () => {
+			return this.status.mute
+		},
+	}
+
+	feedbacks['volumeAB'] = {
+		type: 'boolean',
+		name: 'Volume A/B Status',
+		description: 'Change style if the master volume is set to A or B',
+		defaultStyle: {
+			bgcolor: ColorGreen,
+		},
+		options: [
+			{
+				id: 'char',
+				type: 'dropdown',
+				label: 'A / B',
+				default: 0,
+				choices: [
+					{ id: 0, label: 'A' },
+					{ id: 1, label: 'B' },
+				],
+			},
+		],
+		callback: (feedback) => {
+			return feedback.options.char === this.status.toggleAB
 		},
 	}
 

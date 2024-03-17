@@ -216,6 +216,20 @@ class FarragoInstance extends InstanceBase {
 
 						this.checkFeedbacks('setSelected')
 					}
+				} else if (address.match(/\/master\//)) {
+					//console.log(message)
+					let prop = message.address.replaceAll('/master/', '')
+
+					switch (prop) {
+						case 'mute':
+							this.status.mute = value === 1 ? true : false
+							this.checkFeedbacks('mute')
+							break
+						case 'toggleAB':
+							this.status.toggleAB = value
+							this.checkFeedbacks('volumeAB')
+							break
+					}
 				}
 			}
 		})
