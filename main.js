@@ -172,9 +172,10 @@ class FarragoInstance extends InstanceBase {
 								}
 								break
 							case 'remainingTime':
-								if (this.tiles[index].remainingTime !== value) {
-									this.tiles[index].remainingTime = value
-									this.setVariableValues({ [`${variableName}_remainingTime`]: this.secondsToMS(value) })
+								let seconds = Math.round(value)
+								if (this.tiles[index].remainingTime !== seconds) {
+									this.tiles[index].remainingTime = seconds
+									this.setVariableValues({ [`${variableName}_remainingTime`]: this.secondsToMS(seconds) })
 								}
 								break
 							default:

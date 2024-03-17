@@ -8,14 +8,14 @@ export function getPresets() {
 	const ColorOrange = combineRgb(255, 102, 0)
 
 	let presets = {
-		stopAll: {
+		previous: {
 			type: 'button',
-			category: 'Master Controls',
-			name: 'Stop All',
+			category: 'Transport Controls',
+			name: 'Previous',
 			options: {},
 			style: {
-				text: '⏹ Stop All',
-				size: '14',
+				text: '⏪\\nPrevious',
+				size: 'auto',
 				color: ColorWhite,
 				bgcolor: ColorBlack,
 			},
@@ -23,7 +23,7 @@ export function getPresets() {
 				{
 					down: [
 						{
-							actionId: 'stopAll',
+							actionId: 'previous',
 						},
 					],
 					up: [],
@@ -31,14 +31,91 @@ export function getPresets() {
 			],
 			feedbacks: [],
 		},
-		stopAllIcon: {
+		next: {
 			type: 'button',
-			category: 'Master Controls',
-			name: 'Stop All Icon',
+			category: 'Transport Controls',
+			name: 'Next',
 			options: {},
 			style: {
-				text: '⏹',
-				size: '44',
+				text: '⏩\\nNext',
+				size: 'auto',
+				color: ColorWhite,
+				bgcolor: ColorBlack,
+			},
+			steps: [
+				{
+					down: [
+						{
+							actionId: 'next',
+						},
+					],
+					up: [],
+				},
+			],
+			feedbacks: [],
+		},
+		playPauseAll: {
+			type: 'button',
+			category: 'Transport Controls',
+			name: 'Pause All',
+			options: {},
+			style: {
+				text: '⏯️\\nPlay/Pause All',
+				size: 'auto',
+				color: ColorWhite,
+				bgcolor: ColorBlack,
+			},
+			steps: [
+				{
+					down: [
+						{
+							actionId: 'playPauseAll',
+						},
+					],
+					up: [],
+				},
+			],
+			feedbacks: [],
+		},
+		playSelected: {
+			type: 'button',
+			category: 'Transport Controls',
+			name: 'Play Selected',
+			options: {},
+			style: {
+				text: '▶️\\nPlay',
+				size: 'auto',
+				color: ColorWhite,
+				bgcolor: ColorBlack,
+			},
+			steps: [
+				{
+					down: [
+						{
+							actionId: 'playSelected',
+						},
+					],
+					up: [],
+				},
+			],
+			feedbacks: [
+				{
+					feedbackId: 'playing',
+					options: {},
+					style: {
+						bgcolor: ColorGreen,
+					},
+				},
+			],
+		},
+		stopAll: {
+			type: 'button',
+			category: 'Transport Controls',
+			name: 'Stop All',
+			options: {},
+			style: {
+				text: '⏹️\\nStop All',
+				size: 'auto',
 				color: ColorWhite,
 				bgcolor: ColorBlack,
 			},
@@ -56,12 +133,12 @@ export function getPresets() {
 		},
 		fadeAll: {
 			type: 'button',
-			category: 'Master Controls',
+			category: 'Transport Controls',
 			name: 'Fade All',
 			options: {},
 			style: {
-				text: 'Fade All',
-				size: '14',
+				text: '📐\\nFade All',
+				size: 'auto',
 				color: ColorWhite,
 				bgcolor: ColorBlack,
 			},
@@ -79,7 +156,7 @@ export function getPresets() {
 		},
 		bringForward: {
 			type: 'button',
-			category: 'Master Controls',
+			category: 'Transport Controls',
 			name: 'Bring App Forward',
 			options: {},
 			style: {
