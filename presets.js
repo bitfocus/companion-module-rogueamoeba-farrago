@@ -369,6 +369,25 @@ export function getPresets() {
 				},
 			],
 		},
+		masterVolume: {
+			type: 'button',
+			category: 'Master Controls',
+			name: 'Master Volume',
+			options: {},
+			style: {
+				text: 'Volume:\\n$(farrago:volume)',
+				size: 'auto',
+				color: ColorWhite,
+				bgcolor: ColorBlack,
+			},
+			steps: [
+				{
+					down: [],
+					up: [],
+				},
+			],
+			feedbacks: [],
+		},
 		bringForward: {
 			type: 'button',
 			category: 'Master Controls',

@@ -42,5 +42,16 @@ export function getVariables() {
 		}
 	})
 
+	//Master Variables
+	variables.push({
+		name: `Master Volume`,
+		variableId: `volume`,
+	})
+
+	variables.push({
+		name: `Master Mute`,
+		variableId: `mute`,
+	})
+
 	return variables
 }
