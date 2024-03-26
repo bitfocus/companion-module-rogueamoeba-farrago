@@ -139,6 +139,21 @@ export function getActions() {
 				this.sendCommand(`/set/selected/tile/${selected}/play`, 1)
 			},
 		},
+		selectTile: {
+			name: 'Select Tile in Current Set',
+			options: [
+				{
+					id: 'tile',
+					type: 'textinput',
+					label: 'Tile Position',
+					default: '0/0',
+				},
+			],
+			callback: (action) => {
+				let tile = action.options.tile
+				this.sendCommand(`/set/selected/tile/${tile}/select`, 1)
+			},
+		},
 		setPosition: {
 			name: 'Select Set',
 			options: [
@@ -155,6 +170,22 @@ export function getActions() {
 				this.sendCommand(`/set/${set}/`, 1)
 			},
 		},
+		playSet: {
+			name: 'Play Set',
+			options: [
+				{
+					id: 'set',
+					type: 'dropdown',
+					label: 'Set',
+					choices: setChoices,
+					default: 0,
+				},
+			],
+			callback: (action) => {
+				let set = action.options.set
+				this.sendCommand(`/set/${set}/tile/0/0/play`, 1)
+			},
+		},
 		listReset: {
 			name: 'Reset List',
 			options: [],
@@ -168,6 +199,30 @@ export function getActions() {
 			options: [],
 			callback: () => {
 				this.sendCommand(`/global/bringForward`, 1)
+			},
+		},
+		customCommand: {
+			name: 'Custom Command',
+			options: [
+				{
+					id: 'command',
+					type: 'textinput',
+					label: 'Command',
+					default: '/set/selected/tile/0/0/play',
+					useVariables: true,
+				},
+				{
+					id: 'value',
+					type: 'textinput',
+					label: 'Value',
+					default: '1',
+					useVariables: true,
+				},
+			],
+			callback: async (action) => {
+				let command = await this.parseVariablesInString(action.options.command)
+				let value = await this.parseVariablesInString(action.options.value)
+				this.sendCommand(command, value)
 			},
 		},
 	}
