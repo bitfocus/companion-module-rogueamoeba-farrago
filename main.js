@@ -149,8 +149,7 @@ class FarragoInstance extends InstanceBase {
 							case 'play':
 								if (this.tiles[index].play !== value) {
 									this.tiles[index].play = value
-									this.checkFeedbacks('tilePlaying')
-									this.checkFeedbacks('playing')
+									this.checkFeedbacks('tilePlaying', 'playing')
 								}
 								break
 							case 'color':
