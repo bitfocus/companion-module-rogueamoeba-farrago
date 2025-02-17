@@ -5,7 +5,6 @@ export function getPresets() {
 	const ColorBlack = combineRgb(0, 0, 0)
 	const ColorRed = combineRgb(200, 0, 0)
 	const ColorGreen = combineRgb(0, 200, 0)
-	const ColorOrange = combineRgb(255, 102, 0)
 
 	let presets = {
 		//Transport Controls
@@ -16,7 +15,7 @@ export function getPresets() {
 			options: {},
 			style: {
 				text: '⏪\\nPrevious',
-				size: 'auto',
+				size: '14',
 				color: ColorWhite,
 				bgcolor: ColorBlack,
 			},
@@ -39,7 +38,7 @@ export function getPresets() {
 			options: {},
 			style: {
 				text: '⏩\\nNext',
-				size: 'auto',
+				size: '14',
 				color: ColorWhite,
 				bgcolor: ColorBlack,
 			},
@@ -61,8 +60,8 @@ export function getPresets() {
 			name: 'Pause All',
 			options: {},
 			style: {
-				text: '⏯️\\nPlay/Pause All',
-				size: 'auto',
+				text: '⏯️\\nPlay/Pause\\nAll',
+				size: '12',
 				color: ColorWhite,
 				bgcolor: ColorBlack,
 			},
@@ -85,7 +84,7 @@ export function getPresets() {
 			options: {},
 			style: {
 				text: '▶️\\nPlay',
-				size: 'auto',
+				size: '14',
 				color: ColorWhite,
 				bgcolor: ColorBlack,
 			},
@@ -115,8 +114,8 @@ export function getPresets() {
 			name: 'Stop All',
 			options: {},
 			style: {
-				text: '⏹️\\nStop All',
-				size: 'auto',
+				text: '⏹️\\nStop\\nAll',
+				size: '14',
 				color: ColorWhite,
 				bgcolor: ColorBlack,
 			},
@@ -138,8 +137,8 @@ export function getPresets() {
 			name: 'Fade All',
 			options: {},
 			style: {
-				text: '📐\\nFade All',
-				size: 'auto',
+				text: '📐\\nFade\\nAll',
+				size: '14',
 				color: ColorWhite,
 				bgcolor: ColorBlack,
 			},
@@ -163,7 +162,7 @@ export function getPresets() {
 			options: {},
 			style: {
 				text: '🔽\\nVolume',
-				size: 'auto',
+				size: '14',
 				color: ColorWhite,
 				bgcolor: ColorBlack,
 			},
@@ -186,7 +185,7 @@ export function getPresets() {
 			options: {},
 			style: {
 				text: '🔼\\nVolume',
-				size: 'auto',
+				size: '14',
 				color: ColorWhite,
 				bgcolor: ColorBlack,
 			},
@@ -209,7 +208,7 @@ export function getPresets() {
 			options: {},
 			style: {
 				text: '🅰️🅱️\\nToggle A/B',
-				size: 'auto',
+				size: '14',
 				color: ColorWhite,
 				bgcolor: ColorBlack,
 			},
@@ -232,7 +231,7 @@ export function getPresets() {
 			options: {},
 			style: {
 				text: '🅰️\\nSet to A',
-				size: 'auto',
+				size: '14',
 				color: ColorWhite,
 				bgcolor: ColorBlack,
 			},
@@ -272,7 +271,7 @@ export function getPresets() {
 			options: {},
 			style: {
 				text: '🔇\\nMute',
-				size: 'auto',
+				size: '14',
 				color: ColorWhite,
 				bgcolor: ColorBlack,
 			},
@@ -303,7 +302,7 @@ export function getPresets() {
 			options: {},
 			style: {
 				text: '🔈\\nUnmute',
-				size: 'auto',
+				size: '14',
 				color: ColorWhite,
 				bgcolor: ColorBlack,
 			},
@@ -335,7 +334,7 @@ export function getPresets() {
 			options: {},
 			style: {
 				text: 'Toggle Mute',
-				size: 'auto',
+				size: '14',
 				color: ColorWhite,
 				bgcolor: ColorBlack,
 			},
@@ -376,7 +375,7 @@ export function getPresets() {
 			options: {},
 			style: {
 				text: 'Volume:\\n$(farrago:volume)',
-				size: 'auto',
+				size: '14',
 				color: ColorWhite,
 				bgcolor: ColorBlack,
 			},

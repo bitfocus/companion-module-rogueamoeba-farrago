@@ -7,7 +7,6 @@ export function getFeedbacks() {
 	const ColorBlack = combineRgb(0, 0, 0)
 	const ColorRed = combineRgb(200, 0, 0)
 	const ColorGreen = combineRgb(0, 200, 0)
-	const ColorOrange = combineRgb(255, 102, 0)
 
 	let tileChoices = this.tiles.filter(({ label }) => label)
 	let tileDefault = tileChoices?.[0] ? this.tiles[0].id : ''

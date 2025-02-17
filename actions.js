@@ -193,6 +193,44 @@ export function getActions() {
 				this.sendCommand(`/list/reset`, 1)
 			},
 		},
+		playbackMode: {
+			name: 'List Playback Mode',
+			options: [
+				{
+					id: 'mode',
+					type: 'dropdown',
+					label: 'Mode',
+					choices: [
+						{ id: 0, label: 'Queued' },
+						{ id: 1, label: 'Continuous' },
+					],
+					default: 0,
+				},
+			],
+			callback: (action) => {
+				const mode = action.options.mode
+				this.sendCommand(`/set/selected/playbackMode`, mode)
+			},
+		},
+		setLayout: {
+			name: 'Set Layout',
+			options: [
+				{
+					id: 'layout',
+					type: 'dropdown',
+					label: 'Mode',
+					choices: [
+						{ id: 0, label: 'Grid' },
+						{ id: 1, label: 'List' },
+					],
+					default: 0,
+				},
+			],
+			callback: (action) => {
+				const layout = action.options.layout
+				this.sendCommand(`/set/selected/layout`, layout)
+			},
+		},
 		//Global Actions
 		bringForward: {
 			name: 'Bring App Forward',
