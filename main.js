@@ -44,6 +44,7 @@ class FarragoInstance extends InstanceBase {
 				id: 'host',
 				label: 'IP Address',
 				width: 4,
+				default: '127.0.0.1',
 				regex: Regex.IP,
 			},
 			{
@@ -246,7 +247,7 @@ class FarragoInstance extends InstanceBase {
 		this.tiles.sort((a, b) =>
 			a.id.localeCompare(b.id, undefined, {
 				numeric: true,
-			})
+			}),
 		)
 
 		this.sets.sort((a, b) => a.id - b.id)
